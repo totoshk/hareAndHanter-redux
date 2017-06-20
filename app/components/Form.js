@@ -55,10 +55,14 @@ import { addHunter } from '../actions';
 
                 <div className='hunters-list' >
                     {this.props.hunter.map((hunter, i) => { 
-                        return(<p key={i}>Охотника зовут <span>{hunter.name}</span>, и он охотник <span>{hunter.experience}</span>. 
-                        Заметки: <span>{hunter.notes}</span></p>)
+                        return(
+                            <div key={i}>
+                                <p>Охотника зовут <span>{hunter.name}</span>, и он охотник <span>{hunter.experience}</span>. 
+                                Заметки: <span>{hunter.notes}</span></p>
+                                <p>Заяц, я слежу: x: {this.props.posOfHare.x}, y: {this.props.posOfHare.y}</p>
+                            </div>)
                     })}
-                    <p>Заяц, я слежу: x: {this.props.posOfHare.x}, y: {this.props.posOfHare.y}</p>
+                    
                 </div>
             </section>
         )

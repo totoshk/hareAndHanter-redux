@@ -26,7 +26,7 @@ function getRandomPosition(coordinateX, coordinateY) {
 const hunter = (state = [], action) => {
     switch(action.type) {
         case ADD_HUNTER:
-            return [...hunter, action.hunter];
+            return [...state, action.hunter];
             default:
                 return state;
     };
