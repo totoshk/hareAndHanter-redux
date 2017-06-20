@@ -35,3 +35,15 @@
         padding: 6px 8px 2px;
     }
 }
+
+
+.main-form {
+    margin-right: 300px;
+    padding-top: 20px;
+
+    &__field{
+        display: block;
+        margin-bottom: 10px;
+        width: 150px;
+    }
+}

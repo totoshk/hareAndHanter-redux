@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Hare from "./components/Hare";
 import Hunter from "./components/Hunter";
+import Form from "./components/Form";
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './reducers';
@@ -17,6 +18,7 @@ ReactDOM.render (
         <div> 
             <Hare />
             <Hunter />
+            <Form />
         </div>
     </Provider>,
    document.getElementById("app")
