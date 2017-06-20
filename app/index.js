@@ -8,8 +8,9 @@ import { createStore } from 'redux';
 import reducer from './reducers';
 
 
-// 3. Инициализируем наш store и при помощи Provider подключаем наш store к приложению.
-// Чтобы обеспечить свзяь с редюсером, передаем его в качетсве аргумента в метод createStore.
+// Provider - контейнер, в который передается store в качестве атрибута.
+// Store, таким образом, прокидывается через все дерево компонентов и доступен внутри
+// компонента через this.props.
 
 const store = createStore(reducer);
 

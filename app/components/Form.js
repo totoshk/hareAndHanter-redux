@@ -12,6 +12,8 @@ import { addHunter } from '../actions';
     };
 
 
+// Метод, который навешивается на форму. Он принимает событие и тут же "глушит" отправку формы.
+// В метод addHunter передаем объект, в свойства которого записываем вэлюес из полей формы.
     handleSubmit(event) {
         event.preventDefault();
         this.props.addHunter({
@@ -53,6 +55,8 @@ import { addHunter } from '../actions';
                     <input type="submit" value="Создать" className="main-form__field btn"/>
                 </form>
 
+                {/* Берем массив с объектами (reducer) и для каждого его элемента создаем div и подписываем его на
+                обновление состояния Зайца */}
                 <div className='hunters-list' >
                     {this.props.hunter.map((hunter, i) => { 
                         return(
@@ -69,6 +73,9 @@ import { addHunter } from '../actions';
     }
 }
 
+// Функция, прнимает state - состояние стора и передает его в props компонента.
+// hunter: state.hunter - свойство Хантер ссылается на состояние Хантер (см. редюсер).
+
 function stateToProps(state) {
     return {
         hunter: state.hunter,
@@ -76,4 +83,4 @@ function stateToProps(state) {
     }
 }
 
-export default connect(stateToProps, {addHunter})(Form); 
+export default connect(stateToProps, {addHunter})(Form); // передается функция stateToProps и action addHunter, и связывается с компонентом.

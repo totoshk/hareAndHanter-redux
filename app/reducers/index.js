@@ -2,7 +2,8 @@ import { CHANGE_POSITION } from '../constants';
 import { ADD_HUNTER } from '../constants';
 import { combineReducers } from 'redux';
 
-
+// Редюсер для Зайца. Начальное состояние - объект, в свойствах которого 0.
+// В действие передается ф-ция, которая возвращает объект с рандомными значениями для Х и для У.
 const positionApp = (state = {x: 0, y: 0}, action) => {
     switch(action.type){
         case CHANGE_POSITION:
@@ -22,6 +23,11 @@ function getRandomPosition(coordinateX, coordinateY) {
     }
 };
 
+
+// Редюсер для Охотника. Начальное состояние - пустой массив.
+// Т.к. в actionCreator на вход подается и возвращается объъект, здесь также указываем это.
+// При обновлении стейта объект будет добавляться в массив к остальным объектам, а не перезаписывать его.
+// ...state - распаковать массив.
 
 const hunter = (state = [], action) => {
     switch(action.type) {
