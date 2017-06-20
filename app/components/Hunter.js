@@ -10,7 +10,7 @@ class Hunter extends React.Component {
     };
 
     render() {
-        let posOfHare = this.props.state;
+        let posOfHare = this.props.state.positionApp;
       return (
          <div className="hunter-block">
             <div id="hunter">

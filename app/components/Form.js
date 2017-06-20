@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { changePosition } from '../actions';
 import { addHunter } from '../actions';
 
 
@@ -21,10 +22,8 @@ import { addHunter } from '../actions';
     };
 
     render() {
-        console.log(this)
-        console.log(this.props.hunter.map(hunter => hunter.name))
         return (
-            <section>
+            <section className='add-hunter'>
                 <form onSubmit={this.handleSubmit} className="main-form">
                     <label htmlFor="name">
                         Имя: 
@@ -32,16 +31,17 @@ import { addHunter } from '../actions';
                             type="text" 
                             id="name" 
                             className="main-form__field" 
-                            ref={input => this.name = input}/>
+                            ref={input => this.name = input}
+                            required />
                     </label>
                     <select 
                         name="Охотничий стаж" 
                         id="experience"
                         className="main-form__field" 
                         ref={select => this.experience = select}>
-                        <option value="less-1-year">менее 1 года</option>
-                        <option value="1-5-years">от 1 до 5 лет</option>
-                        <option value="more-5-years">более 5 лет</option>
+                        <option value="менее 1 года">менее 1 года</option>
+                        <option value="от 1 до 5 лет">от 1 до 5 лет</option>
+                        <option value="более 5 лет ">более 5 лет</option>
                     </select>
                     <textarea 
                         name="notes" 
@@ -54,10 +54,11 @@ import { addHunter } from '../actions';
                 </form>
 
                 <div className='hunters-list' >
-                    {console.log(this)}
-                    {this.props.hunter.map(hunter => {
-                        <p>hunter's name is {hunter.name}, his experience is {hunter.experience}. Notes: {hunter.notes}</p>
+                    {this.props.hunter.map((hunter, i) => { 
+                        return(<p key={i}>Охотника зовут <span>{hunter.name}</span>, и он охотник <span>{hunter.experience}</span>. 
+                        Заметки: <span>{hunter.notes}</span></p>)
                     })}
+                    <p>Заяц, я слежу: x: {this.props.posOfHare.x}, y: {this.props.posOfHare.y}</p>
                 </div>
             </section>
         )
@@ -66,7 +67,8 @@ import { addHunter } from '../actions';
 
 function stateToProps(state) {
     return {
-        hunter: state.hunter
+        hunter: state.hunter,
+        posOfHare: state.positionApp
     }
 }
 

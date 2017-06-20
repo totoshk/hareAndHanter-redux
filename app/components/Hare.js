@@ -17,7 +17,6 @@ class Hare extends React.Component {
 
 
     render(){
-        console.log('this.props', this.props);
         return (
             <div className = 'field'>
                 <div id="hare" style={{top: this.props.position.y + 'px', left: this.props.position.x + 'px'}}></div>
@@ -30,7 +29,7 @@ class Hare extends React.Component {
 
 function stateToProps(state) {
     return {
-        position: state
+        position: state.positionApp
     }
 }
 

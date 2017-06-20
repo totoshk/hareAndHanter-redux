@@ -36,7 +36,14 @@
     }
 }
 
-
+.hunter-block {
+    width: 40%;
+    float: left;
+}
+.add-hunter {
+    width: 60%;
+    float: right;
+}
 .main-form {
     margin-right: 300px;
     padding-top: 20px;
@@ -45,5 +52,14 @@
         display: block;
         margin-bottom: 10px;
         width: 150px;
+    }
+}
+
+.hunters-list {
+    clear: both;
+    span {
+        color: magenta;
+        font-weight: bold;
+        font-size: 1.2em;
     }
 }
