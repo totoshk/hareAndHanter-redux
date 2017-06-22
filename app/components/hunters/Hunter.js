@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { changePosition } from '../actions';
-require ('../style.scss');
+import { changePosition } from '../../actions';
+require ('../../style.scss');
 
 
 class Hunter extends React.Component {

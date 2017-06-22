@@ -1,0 +1,45 @@
+.questionary {
+
+    &-form {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+
+        &__field {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 5px 10px;
+        }
+
+        &__label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        &__btn {
+            width: 100%;
+            padding: 10px;
+            max-height: 35px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background: #046ec4;
+            border: 0;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover {
+                background: #0767b5;
+            }
+        }
+
+        &__select {
+            background: #fff;
+
+            option {
+                padding: 5px 0;
+
+            }
+        }
+    }
+}

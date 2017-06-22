@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changePosition } from '../actions';
-import { addHunter } from '../actions';
+import { changePosition, addHunter } from '../../actions';
 
 
  class Form extends React.Component {
@@ -25,21 +24,21 @@ import { addHunter } from '../actions';
 
     render() {
         return (
-            <section className='add-hunter'>
-                <form onSubmit={this.handleSubmit} className="main-form">
-                    <label htmlFor="name">
+            <section className='questionary'>
+                <form onSubmit={this.handleSubmit} className="questionary-form">
+                    <label htmlFor="name" className="questionary-form__label">
                         Имя: 
                         <input 
                             type="text" 
                             id="name" 
-                            className="main-form__field" 
+                            className="questionary-form__field" 
                             ref={input => this.name = input}
                             required />
                     </label>
                     <select 
                         name="Охотничий стаж" 
                         id="experience"
-                        className="main-form__field" 
+                        className="questionary-form__field questionary-form__select" 
                         ref={select => this.experience = select}>
                         <option value="менее 1 года">менее 1 года</option>
                         <option value="от 1 до 5 лет">от 1 до 5 лет</option>
@@ -49,10 +48,10 @@ import { addHunter } from '../actions';
                         name="notes" 
                         id="notes" 
                         cols="18" rows="2" 
-                        className="main-form__field" 
+                        className="questionary-form__field" 
                         ref={textarea => this.notes = textarea} >
                     </textarea>
-                    <input type="submit" value="Создать" className="main-form__field btn"/>
+                    <input type="submit" value="Создать" className="questionary-form__btn"/>
                 </form>
 
                 {/* Берем массив с объектами (reducer) и для каждого его элемента создаем div и подписываем его на

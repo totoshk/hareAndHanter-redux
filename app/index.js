@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Hare from "./components/Hare";
-import Hunter from "./components/Hunter";
-import Form from "./components/Form";
+import Nav from "./components/nav/Nav";
+import Content from "./layouts/Content";
+import Login from "./pages/Login";
+import Main from "./pages/Main";
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './reducers';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
 // Provider - контейнер, в который передается store в качестве атрибута.
@@ -16,11 +18,15 @@ const store = createStore(reducer);
 
 ReactDOM.render (
     <Provider store={store}>
-        <div> 
-            <Hare />
-            <Hunter />
-            <Form />
-        </div>
+        <Router>
+            <div className='container'> 
+                <Nav />
+                <Content>
+                    <Route path='/' exact component={Login} />
+                    <Route path='/main' component={Main} />
+                </Content>
+            </div>
+        </Router>
     </Provider>,
    document.getElementById("app")
 );
