@@ -8,11 +8,8 @@ export const changePosition = () => {
     return action;
 };
 
-// Экшен принимает объект hunter
-export const addHunter = (hunter) => {
-    const action = {
-        type: ADD_HUNTER,
-        hunter
-    }
-    return action;
-};
+
+export const addHunter = (hunter) => ({
+    type: ADD_HUNTER,
+    hunter
+});

@@ -6,7 +6,7 @@ import React from 'react';
         this.initialState = {
             name: '',
             imgSrc: '',
-            gender: '',
+            gender: 'male',
             bdate: '',
             experience: 'less then 1 year',
             difficulty: 1
@@ -82,6 +82,7 @@ import React from 'react';
                             name='gender'
                             id='male'
                             required
+                            checked={this.state.gender === 'male'}
                             onChange = {this.handleChange}/>
                         <label htmlFor="male" className="form-label form-label__gender form-label__gender-male"></label>
                         
@@ -91,6 +92,7 @@ import React from 'react';
                             name='gender'
                             id='female'
                             required
+                            checked={this.state.gender === 'female'}
                             onChange = {this.handleChange}/>
                         <label htmlFor="female" className="form-label form-label__gender form-label__gender-female"></label>
                     </fieldset>
@@ -103,6 +105,7 @@ import React from 'react';
                             min="1930-01-01"
                             max="2010-12-31"
                             required
+                            
                             value= {this.state.bdate}
                             onChange = {this.handleChange}
                         />
