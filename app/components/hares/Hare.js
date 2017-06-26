@@ -7,20 +7,27 @@ require ('../../style.scss');
 class Hare extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            interval: null
+        }
     }
 
     componentDidMount() {
-        setInterval(() => {
+        let interval = setInterval(() => {
             this.props.changePosition();
-        }, 1000);        
+        }, 1000);
+        this.setState({
+            interval: interval
+        })
     }
 
+    componentWillUnmount() {
+       clearInterval(this.state.interval)
+    }
 
     render(){
         return (
-            <div className = 'field'>
-                <div id="hare" style={{top: this.props.position.y + 'px', left: this.props.position.x + 'px'}}></div>
-            </div>
+            <div id="hare" style={{top: this.props.position.y + 'px', left: this.props.position.x + 'px'}}></div>
         )
     }
 }
@@ -33,9 +40,4 @@ function stateToProps(state) {
     }
 }
 
-// 7. Подключаем наш actionCreator к компоненту. 
-// Первый параметр - функция, возвращающая объект state из store. Второй - actionCreator
-
-export default connect(stateToProps, {changePosition})(Hare); 
-
- 
+export default connect(stateToProps, {changePosition})(Hare);

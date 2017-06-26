@@ -1,85 +1,151 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { changePosition, addHunter } from '../../actions';
-
 
  class Form extends React.Component {
     constructor(props) {
         super(props);
+        this.initialState = {
+            name: '',
+            imgSrc: '',
+            gender: '',
+            bdate: '',
+            experience: 'less then 1 year',
+            difficulty: 1
+        }
+        this.state = Object.assign({}, this.initialState);
 
+        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     };
 
 
-// Метод, который навешивается на форму. Он принимает событие и тут же "глушит" отправку формы.
-// В метод addHunter передаем объект, в свойства которого записываем вэлюес из полей формы.
+    handleChange(event) {
+        const target = event.target;
+        let value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+    };
+
     handleSubmit(event) {
         event.preventDefault();
         this.props.addHunter({
-            name: this.name.value, 
-            experience: this.experience.value, 
-            notes: this.notes.value
+            name: this.state.name,
+            imgSrc: this.state.imgSrc,
+            gender: this.state.gender,
+            bdate: this.state.bdate,
+            experience: this.state.experience,
+            difficulty: this.state.difficulty
         })
+
+        this.setState(Object.assign({}, this.initialState));
     };
 
     render() {
+        console.log(this.state.difficulty);
         return (
             <section className='questionary'>
-                <form onSubmit={this.handleSubmit} className="questionary-form">
-                    <label htmlFor="name" className="questionary-form__label">
-                        Имя: 
-                        <input 
-                            type="text" 
-                            id="name" 
-                            className="questionary-form__field" 
-                            ref={input => this.name = input}
-                            required />
-                    </label>
-                    <select 
-                        name="Охотничий стаж" 
-                        id="experience"
-                        className="questionary-form__field questionary-form__select" 
-                        ref={select => this.experience = select}>
-                        <option value="менее 1 года">менее 1 года</option>
-                        <option value="от 1 до 5 лет">от 1 до 5 лет</option>
-                        <option value="более 5 лет ">более 5 лет</option>
-                    </select>
-                    <textarea 
-                        name="notes" 
-                        id="notes" 
-                        cols="18" rows="2" 
-                        className="questionary-form__field" 
-                        ref={textarea => this.notes = textarea} >
-                    </textarea>
-                    <input type="submit" value="Создать" className="questionary-form__btn"/>
-                </form>
+                <h1>Create a character</h1>
+                <form onSubmit={this.handleSubmit}>
+                    <div className="form-wrap">
+                        <label htmlFor="name" className="form-label"><span className="form-label__require">*</span> Nickname:</label>
+                            <input 
+                                type="text"
+                                id="name"
+                                name='name'
+                                className="form-field"
+                                placeholder="Enter your nickname"
+                                value={this.state.name}
+                                onChange = {this.handleChange}
+                                required />
+                    </div>
 
-                {/* Берем массив с объектами (reducer) и для каждого его элемента создаем div и подписываем его на
-                обновление состояния Зайца */}
-                <div className='hunters-list' >
-                    {this.props.hunter.map((hunter, i) => { 
-                        return(
-                            <div key={i}>
-                                <p>Охотника зовут <span>{hunter.name}</span>, и он охотник <span>{hunter.experience}</span>. 
-                                Заметки: <span>{hunter.notes}</span></p>
-                                <p>Заяц, я слежу: x: {this.props.posOfHare.x}, y: {this.props.posOfHare.y}</p>
-                            </div>)
-                    })}
-                    
-                </div>
+                    <div className="form-wrap">
+                        <label htmlFor="photo" className="form-label">Browse your photo</label>
+                        <input type="text"
+                            id="photo"
+                            name='imgSrc'
+                            className="form-field form-field__photo"
+                            placeholder="Enter URL of image"
+                            value= {this.state.imgSrc}
+                            onChange = {this.handleChange}
+                            />
+                        <button className="btn btn-upload" type="button">Upload</button>
+                    </div>
+
+                    <fieldset className="form-wrap form-wrap__gender">
+                        <legend><span className="form-label__require">*</span> Gender:</legend>
+                        
+                        <input type="radio" 
+                            value='male'
+                            name='gender'
+                            id='male'
+                            required
+                            onChange = {this.handleChange}/>
+                        <label htmlFor="male" className="form-label form-label__gender form-label__gender-male"></label>
+                        
+                        
+                        <input type="radio" 
+                            value='female'
+                            name='gender'
+                            id='female'
+                            required
+                            onChange = {this.handleChange}/>
+                        <label htmlFor="female" className="form-label form-label__gender form-label__gender-female"></label>
+                    </fieldset>
+
+                    <div className="form-wrap">
+                        <label htmlFor="bdate" className="form-label"><span className="form-label__require">*</span> Date of your birth :</label>
+                        <input type="date" id="bdate"
+                            name='bdate'
+                            className="form-field"
+                            min="1930-01-01"
+                            max="2010-12-31"
+                            required
+                            value= {this.state.bdate}
+                            onChange = {this.handleChange}
+                        />
+                    </div>
+
+                    <div className="form-wrap">
+                        <label htmlFor="experience" className="form-label">Hunting experience:</label>
+                        <select 
+                            name="experience"
+                            id="experience"
+                            className="form-field form-field__select" 
+                            value= {this.state.experience}
+                            onChange = {this.handleChange}>
+                            <option value="less then 1 year">less then 1 year</option>
+                            <option value="1-5 years">1-5 years</option>
+                            <option value="more than 5 years ">more than 5 years</option>
+                        </select>
+                    </div>
+
+                    <div className="form-wrap">
+                        <label htmlFor="difficulty" className="form-label">Level of difficulty:</label>
+                        <input type="range"
+                            id="difficulty"
+                            name='difficulty'
+                            className="form-field"
+                            min="1"
+                            max="3"
+                            step="1"
+                            value= {this.state.difficulty}
+                            onChange = {this.handleChange}
+                            />
+                        <div className="flexible">
+                            <div>easy</div>
+                            <div>intermediate</div>
+                            <div>hard</div>
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Create" className="btn"/>
+                </form>
             </section>
         )
     }
 }
 
-// Функция, прнимает state - состояние стора и передает его в props компонента.
-// hunter: state.hunter - свойство Хантер ссылается на состояние Хантер (см. редюсер).
-
-function stateToProps(state) {
-    return {
-        hunter: state.hunter,
-        posOfHare: state.positionApp
-    }
-}
-
-export default connect(stateToProps, {addHunter})(Form); // передается функция stateToProps и action addHunter, и связывается с компонентом.
+export default Form; // передается функция stateToProps и action addHunter, и связывается с компонентом.
