@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changePosition, addHunter } from '../actions';
-// import HunterItem from '../components/list/HunterItem';
+import { deleteHunter } from '../actions';
 import HunterPreview from '../components/hunters/HunterPreview';
+
+require ('../style.scss');
 
 function HunterList (props) {
     if (props.hunters.length === 0) {
@@ -12,13 +13,17 @@ function HunterList (props) {
     }
     return (
         <div>
+            <h1>List of all hunters</h1>
             {
                 props.hunters.map((hunter, i) => {
                     return (
-                        <HunterPreview hunter={hunter}>
+                        <HunterPreview hunter={hunter} key={i}>
                             <p className="hunter__info form-label">Age:<span> {hunter.age}</span></p>
                             <p className="hunter__info form-label">Gender:<span> {hunter.gender}</span></p>
                             <p className="hunter__info form-label">Experience<span> {hunter.experience}</span></p>
+                            <button type="button"
+                                className="delete-btn" 
+                                onClick={()=>{props.deleteHunter(i)}}>Delete this hunter</button>
                         </HunterPreview>
                     )
                 })
@@ -29,9 +34,8 @@ function HunterList (props) {
 
 function stateToProps(state) {
     return {
-        hunters: state.hunter,
-        posOfHare: state.positionApp
+        hunters: state.hunter
     }
 }
 
-export default connect(stateToProps, {})(HunterList);
+export default connect(stateToProps, {deleteHunter})(HunterList);

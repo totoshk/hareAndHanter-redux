@@ -14,7 +14,6 @@ const HunterPreview = (props) => {
             <div className="hunter-details">
                 <p className="hunter__info form-label">Nickname:<span> {hunter.name}</span></p>
                 {props.children}
-               
             </div>
         </div>
     )

@@ -53,12 +53,12 @@ form {
             cursor: pointer;
 
             &-male {
-                background: url('./images/male.svg') no-repeat 2px 3px;
+                background: url('../../images/male.svg') no-repeat 2px 3px;
                 background-size: 45px;
             }
 
             &-female {
-                background: url('./images/female.svg') no-repeat 3px 2px;
+                background: url('../../images/female.svg') no-repeat 3px 2px;
                 background-size: 45px;
             }
         }
@@ -74,7 +74,6 @@ form {
         margin-bottom: 15px;
 
         @media (min-width: 768px) {
-            // max-width: 197px;
             margin-bottom: 0;
         }
 

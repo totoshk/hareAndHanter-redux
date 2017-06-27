@@ -5,7 +5,6 @@ import Content from "./layouts/Content";
 import HunterCreator from "./pages/HunterCreator";
 import HarePage from "./pages/HarePage";
 import HunterList from "./pages/HunterList";
-import HunterPage from "./pages/HunterPage";
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './reducers';
@@ -13,7 +12,7 @@ import { BrowserRouter as Router, Route, IndexRoute, Link, Switch, history } fro
 
 require('./style.scss');
 require('./components/forms/index.scss');
-require('./components/list/index.scss');
+require('./components/hunters/index.scss');
 
 const store = createStore(reducer);
 
@@ -25,7 +24,6 @@ ReactDOM.render (
                 <Switch>
                     <Route path='/' exact component={HunterCreator} />
                     <Route path='/hunters' exact component={HunterList} />
-                    <Route path='/hunters-profile' exact component={HunterPage} />
                     <Route path='/hare-page' exact component={HarePage} />
                 </Switch>
             </div>

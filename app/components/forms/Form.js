@@ -1,6 +1,6 @@
 import React from 'react';
 
- class Form extends React.Component {
+class Form extends React.Component {
     constructor(props) {
         super(props);
         this.initialState = {
@@ -11,8 +11,8 @@ import React from 'react';
             experience: 'less then 1 year',
             difficulty: 1
         }
-        this.state = Object.assign({}, this.initialState);
 
+        this.state = Object.assign({}, this.initialState);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     };
@@ -23,10 +23,15 @@ import React from 'react';
         let value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
 
+        if (name === 'name') {
+            value = value.replace(/\W/, '')
+        }
+
         this.setState({
             [name]: value
-        });
+        })
     };
+
 
     handleSubmit(event) {
         event.preventDefault();
@@ -43,7 +48,6 @@ import React from 'react';
     };
 
     render() {
-        console.log(this.state.difficulty);
         return (
             <section className='questionary'>
                 <h1>Create a character</h1>
@@ -151,4 +155,4 @@ import React from 'react';
     }
 }
 
-export default Form; // передается функция stateToProps и action addHunter, и связывается с компонентом.
+export default Form;
