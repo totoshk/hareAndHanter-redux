@@ -1,6 +1,7 @@
 import { CHANGE_POSITION } from '../constants';
 import { ADD_HUNTER } from '../constants';
 import { DELETE_HUNTER } from '../constants';
+import { SET_LANG } from '../constants';
 import { combineReducers } from 'redux';
 
 
@@ -27,6 +28,15 @@ const hunter = (state = [], action) => {
     };
 };
 
-const rootReducer = combineReducers({positionApp, hunter});
+const locale = (state = {lang: 'en'}, action) => {
+    switch(action.type) {
+        case SET_LANG:
+            return { lang: action.lang };
+        default:
+            return state;
+    };
+}
+
+const rootReducer = combineReducers({positionApp, hunter, locale});
 
 export default rootReducer;

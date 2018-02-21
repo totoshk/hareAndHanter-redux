@@ -57,7 +57,9 @@
         text-align: center;
         background: #e9e9e9;
         z-index: 10;
-        
+        float: left;
+        margin-left: 30%;
+
         @media (min-width: 768px) {
             position: static;
         }
@@ -101,6 +103,22 @@
     display: none ;
 
     @media (min-width: 768px) {
-        display: block;
+        display: inline-block;
+    }
+}
+
+.locale {
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+
+    &-lang {
+        margin-left: 5px;
+        cursor: pointer;
+
+        &:first-child {
+            margin-left: 0;
+            margin-right: 5px;
+        }
     }
 }

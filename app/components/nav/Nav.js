@@ -1,5 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+
 
 class Nav extends React.Component {
     constructor(props) {
@@ -25,11 +27,39 @@ class Nav extends React.Component {
                     <div className="bar3"></div>
                 </div>
                 <div className={this.state.active ? 'main-nav__links' : 'main-nav__links hidden'}>
-                    <NavLink to='/' exact className='main-nav__item' activeClassName = 'active'>Hunters Creator</NavLink>
-                    <NavLink to='/hunters' className='main-nav__item' activeClassName = 'active'>List of Hunters</NavLink>
-                    <NavLink to='/hare-page' className='main-nav__item' activeClassName = 'active'>Look at Hare</NavLink>
+                    <NavLink to='/' exact className='main-nav__item' activeClassName = 'active'>
+                        <FormattedMessage
+                            id="nav.creator"
+                            defaultMessage='Hunters Creator'
+                        />
+                    </NavLink>
+                    <NavLink to='/hunters' className='main-nav__item' activeClassName = 'active'>
+                        <FormattedMessage
+                            id="nav.list"
+                            defaultMessage='List of Hunters'
+                        />
+                    </NavLink>
+                    <NavLink to='/hare-page' className='main-nav__item' activeClassName = 'active'>
+                        <FormattedMessage
+                            id="nav.hare"
+                            defaultMessage='Look at Hare'
+                        />
+                    </NavLink>
                 </div>
-                
+                <div className='locale'>
+                    <a
+                        role='button'
+                        className='locale-lang'
+                        onClick={() => this.props.setLang('en')}>
+                            EN
+                    </a> |
+                    <a
+                        role='button'
+                        className='locale-lang'
+                        onClick={() => this.props.setLang('ru')}>
+                            RU
+                    </a>
+                </div>
             </nav>
     )}
 };

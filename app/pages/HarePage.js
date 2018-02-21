@@ -14,7 +14,7 @@ function HarePage (props) {
             {
                 props.hunters.map((hunter, i) => {
                     return (
-                        <HunterPreview hunter={hunter}>
+                        <HunterPreview hunter={hunter} key={i}>
                             <p className="hunter__info form-label">Hare position is {props.posOfHare.x} and {props.posOfHare.y}</p>
                         </HunterPreview>
                     )

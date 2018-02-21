@@ -1,7 +1,7 @@
 import { CHANGE_POSITION } from '../constants';
 import { ADD_HUNTER } from '../constants';
 import { DELETE_HUNTER } from '../constants';
-
+import { SET_LANG } from '../constants';
 
 
 export const changePosition = () => {
@@ -25,8 +25,6 @@ function getRandomPosition(coordinateX, coordinateY) {
         y: randomY
     }
 };
-
-
 
 export const addHunter = (hunter) => {
     if (hunter.imgSrc === '') {
@@ -56,3 +54,13 @@ export const deleteHunter = (index) => ({
     type: DELETE_HUNTER,
     index
 });
+
+export const setLang = lang => ({
+    type: SET_LANG,
+    lang
+})
+
+export const localeSet = lang => (dispatch) => {
+    localStorage.alhubLang = lang;
+    dispatch(setLang(lang));
+}
